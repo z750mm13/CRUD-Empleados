@@ -1,0 +1,44 @@
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Angular simple CRUD</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-8 mt-4">
+      <ul class="list-group">
+        <li
+        *ngFor="let employee of employeeArray"
+        (click)="openForEdit(employee)"
+        [class.active]="employee == selectedEmployee"
+        class="list-group-item list-group-item-action">
+          <span class="badge bg-primary"> {{ employee.id }}</span>{{ employee.name }} - {{employee.country}}
+        </li>
+      </ul>
+      <div class="card mt-4">
+        <div class="card-body form">
+          <div class="card-title">
+            Inserta un nuevo empleado
+          </div>
+          <div class="mb-3 mt-3">
+            <input type="text" [(ngModel)]="selectedEmployee.name" placeholder="Insert a name" class="form-control">
+          </div>
+          <div class="mb-3">
+            <input type="text" [(ngModel)]="selectedEmployee.country" placeholder="Insert a country" class="form-control">
+          </div>
+          <button (click)="addOrEdit()" class="btn btn-primary ml-1">Submit</button>
+          <button
+          *ngIf="selectedEmployee.id !== 0"
+            (click)="delete()"
+            class="btn btn-danger">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+    </div>
+  </div>
+</div>
